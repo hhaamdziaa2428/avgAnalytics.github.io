@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -41,7 +41,7 @@
         
         .btn {
             display: inline-block;
-            background-color: #e74c3c;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
             color: white;
             padding: 12px 30px;
             border-radius: 30px;
@@ -49,16 +49,34 @@
             font-weight: bold;
             transition: all 0.3s ease;
             margin-top: 15px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .btn:hover {
-            background-color: #c0392b;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         
         .text-center {
             text-align: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            margin: 15px auto;
+            border-radius: 2px;
         }
         
         /* Header Styles */
@@ -67,54 +85,155 @@
             color: white;
             padding: 100px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,165.3C960,149,1056,171,1152,186.7C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center bottom;
+            opacity: 0.1;
         }
         
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 10px;
             color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         header p {
             font-size: 1.5rem;
             margin-bottom: 30px;
+            opacity: 0.9;
         }
         
-        /* Why Section */
-        .why-section {
+        /* Help Section */
+        .help-section {
             background-color: white;
+            padding: 80px 0;
         }
         
-        .why-content {
+        .help-list {
+            list-style-type: none;
+            margin: 30px 0;
             max-width: 800px;
             margin: 0 auto;
         }
         
-        .highlight {
-            color: #e74c3c;
+        .help-list li {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .help-list li:before {
+            content: "✓";
+            color: #27ae60;
+            margin-right: 15px;
             font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        /* Packages Section */
+        .packages-section {
+            background-color: #f4f7fc;
+            padding: 80px 0;
+        }
+        
+        .packages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .package-card h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .package-price {
+            font-size: 2rem;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        /* Problem Section */
+        .problem-section {
+            background-color: white;
+            padding: 80px 0;
+        }
+        
+        .problem-list {
+            list-style-type: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .problem-list li {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .problem-list li:before {
+            content: "⚠️";
+            margin-right: 15px;
+            font-size: 1.5rem;
         }
         
         /* Process Section */
         .process-section {
             background-color: #f4f7fc;
+            padding: 80px 0;
         }
         
         .process-steps {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 40px;
+            justify-content: center;
+            gap: 30px;
         }
         
         .step {
-            flex: 1;
-            min-width: 250px;
-            margin: 15px;
-            padding: 30px;
-            background-color: white;
+            background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
             text-align: center;
         }
         
@@ -123,49 +242,16 @@
             width: 50px;
             height: 50px;
             line-height: 50px;
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
             color: white;
             border-radius: 50%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-size: 1.5rem;
+            font-weight: 700;
         }
         
-        /* Packages Section */
-        .packages-section {
-            background-color: white;
-        }
-        
-        .packages-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 40px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .packages-table th, .packages-table td {
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-        
-        .packages-table th {
-            background-color: #2c3e50;
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        .packages-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        .packages-table tr:hover {
-            background-color: #f1f1f1;
-        }
-        
-        .checkmark {
-            color: #27ae60;
+        .step h3 {
+            color: #2c3e50;
             font-size: 1.5rem;
         }
         
@@ -180,6 +266,7 @@
         .cta-section h2 {
             color: white;
             margin-bottom: 30px;
+            font-size: 2.5rem;
         }
         
         .contact-info {
@@ -197,6 +284,15 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: white;
+            color: #2c3e50;
         }
         
         /* Footer */
@@ -209,22 +305,20 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .process-steps {
+            .process-steps, .packages-container {
                 flex-direction: column;
             }
             
-            .packages-table {
-                font-size: 0.9rem;
-                display: block;
-                overflow-x: auto;
-            }
-            
             header h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             header p {
                 font-size: 1.2rem;
+            }
+            
+            .package-card, .step {
+                min-width: 100%;
             }
         }
     </style>
@@ -238,117 +332,90 @@
         </div>
     </header>
 
-    <!-- Why Section -->
-    <section class="why-section">
+    <!-- How We Help Section -->
+    <section class="help-section">
         <div class="container">
-            <h2 class="text-center">Why AVG Analytics?</h2>
-            <div class="why-content">
-                <p class="text-center">Most restaurants lose <span class="highlight">15–30% of profits</span> due to waste and poorly priced menus.</p>
-                <p class="text-center">At AVG Analytics, we help you recover that money with data-driven insights.</p>
-                <p class="text-center highlight">Our dashboards typically pay for themselves in under 30 days.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="process-section">
-        <div class="container">
-            <h2 class="text-center">Our 3-Step Process</h2>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Custom Dashboard Setup</h3>
-                    <p>Connect your sales, inventory & waste data</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Ongoing Weekly Insights</h3>
-                    <p>Automated reports, trends, and action points</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Monthly Strategy Call</h3>
-                    <p>Hands-on advice to increase margins</p>
-                </div>
-            </div>
+            <h2 class="section-title">How We Help You Win</h2>
+            <ul class="help-list">
+                <li>Custom Dashboards</li>
+                <li>Weekly Insights</li>
+                <li>Monthly Strategy Call</li>
+            </ul>
         </div>
     </section>
 
     <!-- Packages Section -->
     <section class="packages-section">
         <div class="container">
-            <h2 class="text-center">Our Packages</h2>
-            <table class="packages-table">
-                <tr>
-                    <th></th>
-                    <th>Dashboard Setup</th>
-                    <th>Standard</th>
-                    <th>Premium</th>
-                </tr>
-                <tr>
-                    <td><strong>Price</strong></td>
-                    <td>$750 (one-time)</td>
-                    <td>$1,000/month</td>
-                    <td>$1,500/month</td>
-                </tr>
-                <tr>
-                    <td>Custom profitability & waste dashboard</td>
-                    <td><span class="checkmark">✔</span></td>
-                    <td><span class="checkmark">✔</span></td>
-                    <td><span class="checkmark">✔</span></td>
-                </tr>
-                <tr>
-                    <td>One-time setup fee</td>
-                    <td><span class="checkmark">✔</span></td>
-                    <td><span class="checkmark">✔</span></td>
-                    <td><span class="checkmark">✔</span></td>
-                </tr>
-                <tr>
-                    <td>Weekly analysis reports</td>
-                    <td></td>
-                    <td><span class="checkmark">✔</span></td>
-                    <td><span class="checkmark">✔</span></td>
-                </tr>
-                <tr>
-                    <td>Monthly strategy call</td>
-                    <td></td>
-                    <td><span class="checkmark">✔</span></td>
-                    <td><span class="checkmark">✔</span></td>
-                </tr>
-                <tr>
-                    <td>Custom KPIs tailored to your menu</td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="checkmark">✔</span></td>
-                </tr>
-                <tr>
-                    <td>Multi-location dashboards</td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="checkmark">✔</span></td>
-                </tr>
-                <tr>
-                    <td>Advanced insights (seasonality, peak hours, staff efficiency)</td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="checkmark">✔</span></td>
-                </tr>
-            </table>
+            <h2 class="section-title">Our Packages</h2>
+            <div class="packages-container">
+                <div class="package-card">
+                    <h3>Dashboard Setup</h3>
+                    <div class="package-price">$750 one-time</div>
+                    <p>Get started with a customized dashboard tailored to your restaurant's needs.</p>
+                </div>
+                <div class="package-card">
+                    <h3>Standard</h3>
+                    <div class="package-price">$1,000/month</div>
+                    <p>Ongoing insights and support with weekly reports and monthly strategy calls.</p>
+                </div>
+                <div class="package-card">
+                    <h3>Premium</h3>
+                    <div class="package-price">$1,500/month</div>
+                    <p>Comprehensive analytics with advanced features and dedicated support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Where Restaurants Lose Money</h2>
+            <ul class="problem-list">
+                <li>15-30% profits lost</li>
+                <li>Food waste & incorrect pricing</li>
+                <li>Inefficient inventory management</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">Simple 3-Step Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Dashboard Setup</h3>
+                    <p>Initial setup and integration with your systems</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Weekly Reports</h3>
+                    <p>Detailed analytics and insights delivered weekly</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Premium Analysis</h3>
+                    <p>Advanced analytics and strategic recommendations</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Start recovering profits today!</h2>
-            <a href="mailto:info@avganalytics.com" class="btn">Book a Free Consultation</a>
+            <h2>Book Your Free Consultation Today!</h2>
+            <a href="mailto:info@avganalytics.com" class="btn">Contact Us Now</a>
             
             <div class="contact-info">
                 <p><i class="fas fa-phone"></i> +92 320 4877000</p>
                 <p><i class="fas fa-envelope"></i> info@avganalytics.com</p>
             </div>
             <a href="https://linkedin.com/company/avg-analytics" class="social-link">
-                <i class="fab fa-linkedin"></i> linkedin.com/company/avg-analytics
+                <i class="fab fa-linkedin"></i> Follow us on LinkedIn
             </a>
         </div>
     </section>
