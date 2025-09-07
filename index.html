@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVG Analytics - Turning Data Into Restaurant Profits</title>
+    <title>AnalytiX | Creative Data Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
+        :root {
+            --primary: #228b22;       /* Forest Green */
+            --secondary: #2d2d2d;     /* Dark Charcoal Gray */
+            --accent: #32cd32;        /* Lime Green for accents */
+            --light: #f8f8f8;         /* Light text color for dark background */
+            --dark: #1a1a1a;          /* Even darker gray for some elements */
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            color: #333;
+            color: var(--light);
             line-height: 1.6;
-            background-color: #f9f9f9;
+            background-color: var(--secondary);
         }
         
         .container {
@@ -27,537 +33,364 @@
             padding: 0 20px;
         }
         
-        section {
-            padding: 80px 0;
-        }
-        
-        h1, h2, h3 {
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-        
-        p {
-            margin-bottom: 15px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            color: white;
-            padding: 14px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 16px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-        
         .text-center {
             text-align: center;
         }
         
-        .section-title {
+        /* Navigation */
+        nav {
+            background-color: var(--secondary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo img {
+            height: 40px; /* Adjust based on your logo's dimensions */
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(45, 45, 45, 0.8), rgba(45, 45, 45, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232d2d2d"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23333" stroke-width="1"/></svg>');
+            background-size: 30px 30px;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
             text-align: center;
-            margin-bottom: 50px;
-            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            margin: 20px auto;
-            border-radius: 2px;
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
         }
         
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            color: white;
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--light);
+        }
+        
+        /* Services Section */
+        .services {
             padding: 100px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
             text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            text-align: center;
+            color: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service {
+            background: rgba(45, 45, 45, 0.7);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #3d3d3d;
+        }
+        
+        .service:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+        
+        .service:hover:before {
+            width: 100%;
+            opacity: 0.05;
+        }
+        
+        .service:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .service p {
+            color: #ccc;
+        }
+        
+        /* Data Visualization Showcase */
+        .showcase {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+        
+        .visualization {
+            background: rgba(45, 45, 45, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 50px;
+            border: 1px solid #3d3d3d;
+        }
+        
+        .viz-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.5rem;
             position: relative;
             overflow: hidden;
         }
         
-        header:before {
+        .viz-placeholder:before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,165.3C960,149,1056,171,1152,186.7C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center bottom;
-            opacity: 0.1;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(34, 139, 34, 0.1) 50%, transparent 100%),
+                repeating-linear-gradient(45deg, rgba(34, 139, 34, 0.05) 0px, rgba(34, 139, 34, 0.05) 1px, transparent 1px, transparent 11px);
+            animation: shimmer 3s infinite linear;
         }
         
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            width: 120px;
-            height: 120px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transform: rotate(45deg);
-            margin: 0 auto;
-        }
-        
-        .logo-inner {
-            transform: rotate(-45deg);
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
             text-align: center;
-        }
-        
-        .logo-inner .avg {
-            font-size: 32px;
-            font-weight: 800;
-            color: #2c3e50;
-            line-height: 1;
-        }
-        
-        .logo-inner .analytics {
-            font-size: 14px;
-            font-weight: 600;
-            color: #e74c3c;
-            letter-spacing: 1px;
-        }
-        
-        header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
             color: white;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        header p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Help Section */
-        .help-section {
-            background-color: white;
-        }
-        
-        .help-list {
-            list-style-type: none;
-            margin: 30px 0;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .help-list li {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .help-list li:hover {
-            background-color: #f9f9f9;
-            transform: translateX(10px);
-        }
-        
-        .help-list li:before {
-            content: "✓";
-            color: #27ae60;
-            margin-right: 15px;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        
-        /* Packages Section */
-        .packages-section {
-            background-color: #f4f7fc;
-        }
-        
-        .packages-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-        
-        .package-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 40px 30px;
-            flex: 1;
-            min-width: 280px;
-            max-width: 350px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .package-card:before {
+        .cta:before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(34, 139, 34, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 80%, rgba(34, 139, 34, 0.1) 0%, transparent 20%);
         }
         
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .package-card h3 {
-            color: #2c3e50;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .package-price {
-            font-size: 2.2rem;
-            color: #e74c3c;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .package-features {
-            list-style-type: none;
-            margin: 20px 0;
-            text-align: left;
-        }
-        
-        .package-features li {
-            padding: 10px 0;
-            border-bottom: 1px dashed #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .package-features li:before {
-            content: "•";
-            color: #3498db;
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
-        
-        /* Problem Section */
-        .problem-section {
-            background-color: white;
-        }
-        
-        .problem-list {
-            list-style-type: none;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .problem-list li {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .problem-list li:hover {
-            background-color: #fff5f5;
-            transform: translateX(10px);
-        }
-        
-        .problem-list li:before {
-            content: "⚠️";
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
-        
-        /* Process Section */
-        .process-section {
-            background-color: #f4f7fc;
-        }
-        
-        .process-steps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-        
-        .step {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 40px 30px;
-            flex: 1;
-            min-width: 280px;
-            max-width: 350px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-        
-        .step:hover {
-            transform: translateY(-10px);
-        }
-        
-        .step-number {
+        .btn {
             display: inline-block;
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            background-color: var(--primary);
             color: white;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .step h3 {
-            color: #2c3e50;
-            font-size: 1.5rem;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-        }
-        
-        .cta-section h2 {
-            color: white;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-        }
-        
-        .contact-info {
-            margin: 30px 0;
-        }
-        
-        .contact-info p {
-            margin: 10px 0;
-            font-size: 1.2rem;
-        }
-        
-        .social-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid white;
-            border-radius: 30px;
+            margin-top: 20px;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
         }
         
-        .social-link:hover {
-            background: white;
-            color: #2c3e50;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(34, 139, 34, 0.4);
+            background-color: var(--accent);
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .process-steps, .packages-container {
-                flex-direction: column;
-            }
-            
-            header h1 {
+            .hero h1 {
                 font-size: 2.5rem;
             }
             
-            header p {
+            .hero p {
                 font-size: 1.2rem;
             }
             
-            .package-card, .step {
-                min-width: 100%;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
             
-            .logo {
-                width: 100px;
-                height: 100px;
+            .nav-links {
+                display: none;
             }
             
-            .logo-inner .avg {
-                font-size: 28px;
+            .nav-container {
+                padding: 10px 0;
             }
-            
-            .logo-inner .analytics {
-                font-size: 12px;
-            }
+        }
+        
+        /* Math Symbol Styling */
+        .math-symbol {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            display: inline-block;
+            margin: 0 5px;
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
+    <nav>
         <div class="container">
-            <div class="logo-container">
+            <div class="nav-container">
                 <div class="logo">
-                    <div class="logo-inner">
-                        <div class="avg">AVG</div>
-                        <div class="analytics">ANALYTICS</div>
+                    <!-- Replace the text below with your actual logo -->
+                    <!-- <img src="logo.png" alt="AnalytiX Logo"> -->
+                    <span style="font-size: 1.8rem; font-weight: 700; color: #228b22;">AnalytiX</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#showcase">Work</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Where Data Meets Creativity</h1>
+                <p>Transforming complex data into beautiful, actionable insights that drive business growth</p>
+                <p>Using advanced analytics <span class="math-symbol">\[\frac{\partial}{\partial t}\]</span> to solve complex problems</p>
+                <a href="#services" class="btn">Explore Our Services</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Creative Analytics Services</h2>
+            <p class="section-subtitle">Leveraging mathematical precision to deliver impactful insights</p>
+            <div class="services-grid">
+                <div class="service">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
                     </div>
+                    <h3>Data Visualization</h3>
+                    <p>Beautiful, intuitive visualizations that make complex data understandable at a glance</p>
                 </div>
-            </div>
-            <h1>AVG ANALYTICS</h1>
-            <p>Turning Data Into Restaurant Profits</p>
-            <a href="#contact" class="btn">Get Started Today</a>
-        </div>
-    </header>
-
-    <!-- How We Help Section -->
-    <section class="help-section">
-        <div class="container">
-            <h2 class="section-title">How We Help You Win</h2>
-            <ul class="help-list">
-                <li>Custom Dashboards</li>
-                <li>Weekly Insights</li>
-                <li>Monthly Strategy Call</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Packages Section -->
-    <section class="packages-section">
-        <div class="container">
-            <h2 class="section-title">Our Packages</h2>
-            <div class="packages-container">
-                <div class="package-card">
-                    <h3>Dashboard Setup</h3>
-                    <div class="package-price">$750 one-time</div>
-                    <ul class="package-features">
-                        <li>Custom profitability dashboard</li>
-                        <li>One-time setup fee</li>
-                        <li>Basic reporting features</li>
-                    </ul>
-                    <a href="#contact" class="btn">Get Started</a>
+                <div class="service">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Interactive Dashboards</h3>
+                    <p>Custom dashboards that allow exploration and discovery of insights</p>
                 </div>
-                <div class="package-card">
-                    <h3>Standard</h3>
-                    <div class="package-price">$1,000/month</div>
-                    <ul class="package-features">
-                        <li>Everything in Dashboard Setup</li>
-                        <li>Weekly analysis reports</li>
-                        <li>Monthly strategy call</li>
-                    </ul>
-                    <a href="#contact" class="btn">Get Started</a>
-                </div>
-                <div class="package-card">
-                    <h3>Premium</h3>
-                    <div class="package-price">$1,500/month</div>
-                    <ul class="package-features">
-                        <li>Everything in Standard</li>
-                        <li>Custom KPIs tailored to your menu</li>
-                        <li>Multi-location dashboards</li>
-                        <li>Advanced insights analytics</li>
-                    </ul>
-                    <a href="#contact" class="btn">Get Started</a>
+                <div class="service">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Data Storytelling</h3>
+                    <p>Compelling narratives that turn data into persuasive business cases</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Problem Section -->
-    <section class="problem-section">
+    
+    <section class="showcase" id="showcase">
         <div class="container">
-            <h2 class="section-title">Where Restaurants Lose Money</h2>
-            <ul class="problem-list">
-                <li>15-30% profits lost due to inefficiencies</li>
-                <li>Food waste & incorrect pricing strategies</li>
-                <li>Inefficient inventory management</li>
-                <li>Lack of data-driven decision making</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="process-section">
-        <div class="container">
-            <h2 class="section-title">Simple 3-Step Process</h2>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Dashboard Setup</h3>
-                    <p>We integrate with your POS and inventory systems to create a custom dashboard tailored to your restaurant's needs.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Weekly Reports</h3>
-                    <p>Receive automated weekly reports with actionable insights on waste reduction and profit opportunities.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Strategy Implementation</h3>
-                    <p>We help you implement data-driven strategies to increase margins and reduce costs.</p>
+            <h2 class="section-title">Our Data Visualizations</h2>
+            <p class="section-subtitle">We combine aesthetic design with analytical rigor to create impactful data experiences</p>
+            <div class="visualization">
+                <div class="viz-placeholder">
+                    Interactive Data Visualization Showcase
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
+    
+    <section class="cta" id="contact">
         <div class="container">
-            <h2>Book Your Free Consultation Today!</h2>
-            <a href="mailto:info@avganalytics.com" class="btn">Contact Us Now</a>
-            
-            <div class="contact-info">
-                <p><i class="fas fa-phone"></i> +92 320 4877000</p>
-                <p><i class="fas fa-envelope"></i> info@avganalytics.com</p>
-            </div>
-            <a href="https://linkedin.com/company/avg-analytics" class="social-link">
-                <i class="fab fa-linkedin"></i> Follow us on LinkedIn
-            </a>
+            <h2>Ready to Transform Your Data Experience?</h2>
+            <p>Let's create something amazing together</p>
+            <a href="#contact" class="btn">Start a Project</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 AVG Analytics. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        // Simple script to handle smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
