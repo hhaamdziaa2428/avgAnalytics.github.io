@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AnalytiX | Creative Data Solutions</title>
+    <title>AVG Analytics | Creative Data Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #228b22;       /* Forest Green */
@@ -54,8 +55,29 @@
             padding: 15px 0;
         }
         
-        .logo img {
-            height: 40px; /* Adjust based on your logo's dimensions */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
         }
         
         .nav-links a {
@@ -75,7 +97,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(45, 45, 45, 0.8), rgba(45, 45, 45, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232d2d2d"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23333" stroke-width="1"/></svg>');
+            background: linear-gradient(rgba(45, 45, 45, 0.9), rgba(45, 45, 45, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232d2d2d"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23333" stroke-width="1"/></svg>');
             background-size: 30px 30px;
             padding-top: 80px;
         }
@@ -187,35 +209,9 @@
             border: 1px solid #3d3d3d;
         }
         
-        .viz-placeholder {
+        .chart-container {
             height: 400px;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--light);
-            font-size: 1.5rem;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .viz-placeholder:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(90deg, transparent 0%, rgba(34, 139, 34, 0.1) 50%, transparent 100%),
-                repeating-linear-gradient(45deg, rgba(34, 139, 34, 0.05) 0px, rgba(34, 139, 34, 0.05) 1px, transparent 1px, transparent 11px);
-            animation: shimmer 3s infinite linear;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
         
         /* CTA Section */
@@ -262,6 +258,27 @@
             background-color: var(--accent);
         }
         
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            padding: 40px 0;
+            text-align: center;
+            color: #ccc;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
@@ -291,6 +308,18 @@
             font-style: italic;
             display: inline-block;
             margin: 0 5px;
+            color: var(--accent);
+        }
+        
+        /* Animation for the logo */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo-img {
+            animation: pulse 4s infinite ease-in-out;
         }
     </style>
 </head>
@@ -299,9 +328,8 @@
         <div class="container">
             <div class="nav-container">
                 <div class="logo">
-                    <!-- Replace the text below with your actual logo -->
-                    <!-- <img src="logo.png" alt="AnalytiX Logo"> -->
-                    <span style="font-size: 1.8rem; font-weight: 700; color: #228b22;">AnalytiX</span>
+                    <div class="logo-img">∂</div>
+                    <div class="logo-text">AVG Analytics</div>
                 </div>
                 <div class="nav-links">
                     <a href="#services">Services</a>
@@ -358,8 +386,8 @@
             <h2 class="section-title">Our Data Visualizations</h2>
             <p class="section-subtitle">We combine aesthetic design with analytical rigor to create impactful data experiences</p>
             <div class="visualization">
-                <div class="viz-placeholder">
-                    Interactive Data Visualization Showcase
+                <div class="chart-container">
+                    <canvas id="dataChart"></canvas>
                 </div>
             </div>
         </div>
@@ -372,6 +400,15 @@
             <a href="#contact" class="btn">Start a Project</a>
         </div>
     </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AVG Analytics</div>
+                <p>© 2023 AVG Analytics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Simple script to handle smooth scrolling for navigation links
@@ -390,6 +427,81 @@
                     });
                 }
             });
+        });
+        
+        // Create sample chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('dataChart').getContext('2d');
+            
+            // Sample data for the chart
+            const data = {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [
+                    {
+                        label: 'Website Traffic',
+                        data: [65, 59, 80, 81, 56, 72],
+                        borderColor: '#228b22',
+                        backgroundColor: 'rgba(34, 139, 34, 0.2)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Conversion Rate',
+                        data: [28, 48, 40, 45, 36, 52],
+                        borderColor: '#32cd32',
+                        backgroundColor: 'rgba(50, 205, 50, 0.2)',
+                        tension: 0.3,
+                        fill: true
+                    }
+                ]
+            };
+            
+            // Chart configuration
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Business Performance Metrics',
+                            color: '#f8f8f8',
+                            font: {
+                                size: 18
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: '#f8f8f8'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#f8f8f8'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#f8f8f8'
+                            }
+                        }
+                    }
+                }
+            };
+            
+            // Create the chart
+            new Chart(ctx, config);
         });
     </script>
 </body>
