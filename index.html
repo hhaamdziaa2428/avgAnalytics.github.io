@@ -6,6 +6,8 @@
     <title>AVG Analytics | Creative Data Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --primary: #228b22;       /* Forest Green */
@@ -67,11 +69,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--primary);
             border-radius: 50%;
             font-weight: bold;
             font-size: 20px;
             color: white;
+            overflow: hidden;
+        }
+        
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         
         .logo-text {
@@ -118,6 +126,15 @@
             font-size: 1.5rem;
             margin-bottom: 40px;
             color: var(--light);
+        }
+        
+        .math-display {
+            font-size: 2rem;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: inline-block;
         }
         
         /* Services Section */
@@ -192,6 +209,98 @@
         
         .service p {
             color: #ccc;
+        }
+        
+        /* Industries Section */
+        .industries {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+        
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .industry {
+            background: rgba(45, 45, 45, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #3d3d3d;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .industry h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .industry-content {
+            transition: all 0.3s ease;
+        }
+        
+        .industry-details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 30px;
+            background: rgba(34, 139, 34, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            border-radius: 15px;
+        }
+        
+        .industry:hover .industry-content {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        .industry:hover .industry-details {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .industry-details h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .industry-details ul {
+            list-style-type: none;
+            text-align: left;
+            padding: 0 20px;
+        }
+        
+        .industry-details li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: white;
+        }
+        
+        .industry-details li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
         
         /* Data Visualization Showcase */
@@ -289,7 +398,7 @@
                 font-size: 1.2rem;
             }
             
-            .services-grid {
+            .services-grid, .industries-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -300,15 +409,11 @@
             .nav-container {
                 padding: 10px 0;
             }
-        }
-        
-        /* Math Symbol Styling */
-        .math-symbol {
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-            display: inline-block;
-            margin: 0 5px;
-            color: var(--accent);
+            
+            .math-display {
+                font-size: 1.5rem;
+                padding: 10px;
+            }
         }
         
         /* Animation for the logo */
@@ -321,6 +426,11 @@
         .logo-img {
             animation: pulse 4s infinite ease-in-out;
         }
+        
+        .mjx-chtml {
+            font-size: 1.2em !important;
+            color: var(--accent) !important;
+        }
     </style>
 </head>
 <body>
@@ -328,11 +438,14 @@
         <div class="container">
             <div class="nav-container">
                 <div class="logo">
-                    <div class="logo-img">∂</div>
+                    <div class="logo-img">
+                        <img src="https://github.com/hhaamdziaa2428/avgAnalytics.github.io/raw/main/logo.png" alt="AVG Analytics Logo">
+                    </div>
                     <div class="logo-text">AVG Analytics</div>
                 </div>
                 <div class="nav-links">
                     <a href="#services">Services</a>
+                    <a href="#industries">Industries</a>
                     <a href="#showcase">Work</a>
                     <a href="#contact">Contact</a>
                 </div>
@@ -345,7 +458,7 @@
             <div class="hero-content">
                 <h1>Where Data Meets Creativity</h1>
                 <p>Transforming complex data into beautiful, actionable insights that drive business growth</p>
-                <p>Using advanced analytics <span class="math-symbol">\[\frac{\partial}{\partial t}\]</span> to solve complex problems</p>
+                <p>Using advanced analytics <span class="math-display">\[\frac{\partial}{\partial t}\]</span> to solve complex problems</p>
                 <a href="#services" class="btn">Explore Our Services</a>
             </div>
         </div>
@@ -381,6 +494,57 @@
         </div>
     </section>
     
+    <section class="industries" id="industries">
+        <div class="container">
+            <h2 class="section-title">Industry Specializations</h2>
+            <p class="section-subtitle">Tailored analytics solutions for your industry</p>
+            <div class="industries-grid">
+                <div class="industry">
+                    <div class="industry-content">
+                        <h3>Restaurant Analytics</h3>
+                        <p>Optimize your food business with data-driven insights</p>
+                    </div>
+                    <div class="industry-details">
+                        <h4>Restaurant Analytics Solutions</h4>
+                        <ul>
+                            <li>Waste Tracker</li>
+                            <li>Profitability Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="industry">
+                    <div class="industry-content">
+                        <h3>Game Analytics</h3>
+                        <p>Enhance player experience and maximize engagement</p>
+                    </div>
+                    <div class="industry-details">
+                        <h4>Game Analytics Solutions</h4>
+                        <ul>
+                            <li>Game Health Analysis</li>
+                            <li>Player Retention Analysis</li>
+                            <li>Review Sentiment Analysis</li>
+                            <li>Level Drop-Off Funnel Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="industry">
+                    <div class="industry-content">
+                        <h3>Real Estate Analytics</h3>
+                        <p>Make smarter property investment decisions</p>
+                    </div>
+                    <div class="industry-details">
+                        <h4>Real Estate Analytics Solutions</h4>
+                        <ul>
+                            <li>Rental ROI Calculator</li>
+                            <li>Agent Performance Dashboard</li>
+                            <li>Property Type Heatmap</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="showcase" id="showcase">
         <div class="container">
             <h2 class="section-title">Our Data Visualizations</h2>
@@ -397,7 +561,7 @@
         <div class="container">
             <h2>Ready to Transform Your Data Experience?</h2>
             <p>Let's create something amazing together</p>
-            <a href="#contact" class="btn">Start a Project</a>
+            <a href="#contact" class="btn">Book a Call</a>
         </div>
     </section>
     
@@ -502,6 +666,9 @@
             
             // Create the chart
             new Chart(ctx, config);
+            
+            // Render MathJax after chart is created
+            MathJax.typeset();
         });
     </script>
 </body>
