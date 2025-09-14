@@ -12,7 +12,7 @@
       --light: #FFFFFF;     /* White Text */
       --dark: #0A1F44;      /* Midnight Blue for text contrast */
     }
-    
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -37,36 +37,6 @@
     }
     nav a:hover {
       color: var(--accent);
-    }
-
-    /* Dropdown */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background: var(--secondary);
-      min-width: 250px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      border-radius: 5px;
-      z-index: 1;
-      padding: 0.5rem 0;
-    }
-    .dropdown-content a {
-      color: var(--dark);
-      padding: 0.75rem 1rem;
-      text-decoration: none;
-      display: block;
-      font-weight: normal;
-    }
-    .dropdown-content a:hover {
-      background: var(--accent);
-      color: var(--primary);
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
     }
 
     /* Hero Section */
@@ -141,6 +111,8 @@
       min-width: 250px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
+      position: relative;
+      cursor: pointer;
     }
     .industry-card:hover {
       transform: translateY(-5px);
@@ -153,6 +125,29 @@
     .industry-card p {
       color: #555;
       line-height: 1.6;
+    }
+
+    /* Hidden Solutions */
+    .solutions {
+      display: none;
+      margin-top: 1rem;
+      text-align: left;
+      padding-left: 1rem;
+      color: #333;
+    }
+    .industry-card:hover .solutions {
+      display: block;
+    }
+    .solutions h4 {
+      margin: 0.5rem 0;
+      color: var(--primary);
+    }
+    .solutions ul {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+    .solutions ul li {
+      margin: 0.3rem 0;
     }
 
     /* Footer */
@@ -207,18 +202,49 @@
   <section class="industries" id="industries">
     <h2>Industries We Serve</h2>
     <div class="industry-container">
+      
+      <!-- Restaurant -->
       <div class="industry-card">
         <h3>Restaurant Analytics</h3>
         <p>Optimize your food business with data-driven insights</p>
+        <div class="solutions">
+          <h4>Restaurant Analytics Solutions</h4>
+          <ul>
+            <li>Waste Tracker</li>
+            <li>Profitability Dashboard</li>
+          </ul>
+        </div>
       </div>
+
+      <!-- Gaming -->
       <div class="industry-card">
         <h3>Game Analytics</h3>
         <p>Enhance player experience and maximize engagement</p>
+        <div class="solutions">
+          <h4>Game Analytics Solutions</h4>
+          <ul>
+            <li>Game Health Analysis</li>
+            <li>Player Retention Analysis</li>
+            <li>Review Sentiment Analysis</li>
+            <li>Level Drop-Off Funnel Analysis</li>
+          </ul>
+        </div>
       </div>
+
+      <!-- Real Estate -->
       <div class="industry-card">
         <h3>Real Estate Analytics</h3>
         <p>Make smarter property investment decisions</p>
+        <div class="solutions">
+          <h4>Real Estate Analytics Solutions</h4>
+          <ul>
+            <li>Rental ROI Calculator</li>
+            <li>Agent Performance Dashboard</li>
+            <li>Property Type Heatmap</li>
+          </ul>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -229,3 +255,4 @@
 
 </body>
 </html>
+
