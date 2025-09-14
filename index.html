@@ -1,725 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVG Analytics | Creative Data Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        :root {
-            --primary: #228b22;       /* Forest Green */
-            --secondary: #2d2d2d;     /* Dark Charcoal Gray */
-            --accent: #32cd32;        /* Lime Green for accents */
-            --light: #f8f8f8;         /* Light text color for dark background */
-            --dark: #1a1a1a;          /* Even darker gray for some elements */
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            color: var(--light);
-            line-height: 1.6;
-            background-color: var(--secondary);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Navigation */
-        nav {
-            background-color: var(--secondary);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 20px;
-            color: white;
-            overflow: hidden;
-            background: var(--primary);
-            position: relative;
-        }
-        
-        /* CSS-based logo with website colors */
-        .logo-graphic {
-            position: relative;
-            width: 30px;
-            height: 30px;
-        }
-        
-        .logo-a {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--light);
-            border-radius: 50%;
-            top: 5px;
-            left: 5px;
-        }
-        
-        .logo-v {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 17px solid var(--light);
-            top: 13px;
-            left: 5px;
-        }
-        
-        .logo-g {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 3px solid var(--light);
-            border-radius: 50%;
-            top: 5px;
-            left: 5px;
-        }
-        
-        .logo-g-inner {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--light);
-            top: 12px;
-            left: 15px;
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(rgba(45, 45, 45, 0.9), rgba(45, 45, 45, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232d2d2d"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23333" stroke-width="1"/></svg>');
-            background-size: 30px 30px;
-            padding-top: 80px;
-        }
-        
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            color: var(--light);
-        }
-        
-        .math-display {
-            font-size: 2rem;
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            display: inline-block;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            text-align: center;
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 60px;
-            text-align: center;
-            color: var(--light);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service {
-            background: rgba(45, 45, 45, 0.7);
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #3d3d3d;
-        }
-        
-        .service:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            transition: width 0.3s ease;
-        }
-        
-        .service:hover:before {
-            width: 100%;
-            opacity: 0.05;
-        }
-        
-        .service:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .service h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .service p {
-            color: #ccc;
-        }
-        
-        /* Industries Section */
-        .industries {
-            padding: 100px 0;
-            background: var(--dark);
-        }
-        
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .industry {
-            background: rgba(45, 45, 45, 0.7);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #3d3d3d;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .industry h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .industry-content {
-            transition: all 0.3s ease;
-        }
-        
-        .industry-details {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 30px;
-            background: rgba(34, 139, 34, 0.95);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            border-radius: 15px;
-        }
-        
-        .industry:hover .industry-content {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        
-        .industry:hover .industry-details {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .industry-details h4 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-        
-        .industry-details ul {
-            list-style-type: none;
-            text-align: left;
-            padding: 0 20px;
-        }
-        
-        .industry-details li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-            color: white;
-        }
-        
-        .industry-details li:before {
-            content: "•";
-            color: var(--accent);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
-        /* Data Visualization Showcase */
-        .showcase {
-            padding: 100px 0;
-            background: var(--dark);
-        }
-        
-        .visualization {
-            background: rgba(45, 45, 45, 0.7);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-top: 50px;
-            border: 1px solid #3d3d3d;
-        }
-        
-        .chart-container {
-            height: 400px;
-            position: relative;
-        }
-        
-        /* CTA Section */
-        .cta {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(34, 139, 34, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 80%, rgba(34, 139, 34, 0.1) 0%, transparent 20%);
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(34, 139, 34, 0.4);
-            background-color: var(--accent);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            padding: 40px 0;
-            text-align: center;
-            color: #ccc;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .footer-logo {
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .services-grid, .industries-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-container {
-                padding: 10px 0;
-            }
-            
-            .math-display {
-                font-size: 1.5rem;
-                padding: 10px;
-            }
-        }
-        
-        /* Animation for the logo */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .logo-img {
-            animation: pulse 4s infinite ease-in-out;
-        }
-        
-        .mjx-chtml {
-            font-size: 1.2em !important;
-            color: var(--accent) !important;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AVG Analytics</title>
+  <style>
+    :root {
+      --primary: #0A1F44;   /* Midnight Blue */
+      --secondary: #FFFFFF; /* White */
+      --accent: #00E5FF;    /* Bright Cyan */
+      --light: #FFFFFF;     /* White Text */
+      --dark: #0A1F44;      /* Midnight Blue for text contrast */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: var(--secondary);
+      color: var(--dark);
+    }
+
+    /* Navbar */
+    nav {
+      background: var(--primary);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: var(--light);
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(10, 31, 68, 0.85), rgba(10, 31, 68, 0.85)), url('hero-bg.jpg') center/cover no-repeat;
+      color: var(--light);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero button {
+      background: var(--accent);
+      border: none;
+      padding: 1rem 2rem;
+      color: var(--primary);
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .hero button:hover {
+      background: #00c2d6;
+    }
+
+    /* Services */
+    .services {
+      padding: 4rem 2rem;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .service {
+      background: var(--secondary);
+      border: 1px solid var(--accent);
+      padding: 2rem;
+      border-radius: 10px;
+      width: 30%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .service h3 {
+      color: var(--primary);
+    }
+
+    /* Charts */
+    .charts {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: var(--light);
+      text-align: center;
+      padding: 1.5rem;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">
-                    <div class="logo-img">
-                        <!-- CSS-based logo with website colors -->
-                        <div class="logo-graphic">
-                            <div class="logo-a"></div>
-                            <div class="logo-v"></div>
-                            <div class="logo-g">
-                                <div class="logo-g-inner"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="logo-text">AVG Analytics</div>
-                </div>
-                <div class="nav-links">
-                    <a href="#services">Services</a>
-                    <a href="#industries">Industries</a>
-                    <a href="#showcase">Work</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Where Data Meets Creativity</h1>
-                <p>Transforming complex data into beautiful, actionable insights that drive business growth</p>
-                <p>Using advanced analytics to solve complex problems</p>
-                <a href="#services" class="btn">Explore Our Services</a>
-            </div>
-        </div>
-    </section>
-    
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Creative Analytics Services</h2>
-            <p class="section-subtitle">Leveraging mathematical precision to deliver impactful insights</p>
-            <div class="services-grid">
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Data Visualization</h3>
-                    <p>Beautiful, intuitive visualizations that make complex data understandable at a glance</p>
-                </div>
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>Interactive Dashboards</h3>
-                    <p>Custom dashboards that allow exploration and discovery of insights</p>
-                </div>
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Data Storytelling</h3>
-                    <p>Compelling narratives that turn data into persuasive business cases</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="industries" id="industries">
-        <div class="container">
-            <h2 class="section-title">Industry Specializations</h2>
-            <p class="section-subtitle">Tailored analytics solutions for your industry</p>
-            <div class="industries-grid">
-                <div class="industry">
-                    <div class="industry-content">
-                        <h3>Restaurant Analytics</h3>
-                        <p>Optimize your food business with data-driven insights</p>
-                    </div>
-                    <div class="industry-details">
-                        <h4>Restaurant Analytics Solutions</h4>
-                        <ul>
-                            <li>Waste Tracker</li>
-                            <li>Profitability Dashboard</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="industry">
-                    <div class="industry-content">
-                        <h3>Game Analytics</h3>
-                        <p>Enhance player experience and maximize engagement</p>
-                    </div>
-                    <div class="industry-details">
-                        <h4>Game Analytics Solutions</h4>
-                        <ul>
-                            <li>Game Health Analysis</li>
-                            <li>Player Retention Analysis</li>
-                            <li>Review Sentiment Analysis</li>
-                            <li>Level Drop-Off Funnel Analysis</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="industry">
-                    <div class="industry-content">
-                        <h3>Real Estate Analytics</h3>
-                        <p>Make smarter property investment decisions</p>
-                    </div>
-                    <div class="industry-details">
-                        <h4>Real Estate Analytics Solutions</h4>
-                        <ul>
-                            <li>Rental ROI Calculator</li>
-                            <li>Agent Performance Dashboard</li>
-                            <li>Property Type Heatmap</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="showcase" id="showcase">
-        <div class="container">
-            <h2 class="section-title">Our Data Visualizations</h2>
-            <p class="section-subtitle">We combine aesthetic design with analytical rigor to create impactful data experiences</p>
-            <div class="visualization">
-                <div class="chart-container">
-                    <canvas id="dataChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="cta" id="contact">
-        <div class="container">
-            <h2>Ready to Transform Your Data Experience?</h2>
-            <p>Let's create something amazing together</p>
-            <a href="#contact" class="btn">Book a Call</a>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">AVG Analytics</div>
-                <p>© 2023 AVG Analytics. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
-    <script>
-        // Simple script to handle smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Create sample chart
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('dataChart').getContext('2d');
-            
-            // Sample data for the chart
-            const data = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                datasets: [
-                    {
-                        label: 'Website Traffic',
-                        data: [65, 59, 80, 81, 56, 72],
-                        borderColor: '#228b22',
-                        backgroundColor: 'rgba(34, 139, 34, 0.2)',
-                        tension: 0.3,
-                        fill: true
-                    },
-                    {
-                        label: 'Conversion Rate',
-                        data: [28, 48, 40, 45, 36, 52],
-                        borderColor: '#32cd32',
-                        backgroundColor: 'rgba(50, 205, 50, 0.2)',
-                        tension: 0.3,
-                        fill: true
-                    }
-                ]
-            };
-            
-            // Chart configuration
-            const config = {
-                type: 'line',
-                data: data,
-                options: {
-                    responsive: true;
-                    maintainAspectRatio: false;
-                    plugins: {
-                        title: {
-                            display: true;
-                            text: 'Business Performance Metrics',
-                            color: '#f8f8f8',
-                            font: {
-                                size: 18
-                            }
-                        },
-                        legend: {
-                            labels: {
-                                color: '#f8f8f8'
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            ticks: {
-                                color: '#f8f8f8'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            ticks: {
-                                color: '#f8f8f8'
-                            }
-                        }
-                    }
-                }
-            };
-            
-            // Create the chart
-            new Chart(ctx, config);
-            
-            // Render MathJax after chart is created
-            MathJax.typeset();
-        });
-    </script>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo"><a href="#">AVG Analytics</a></div>
+    <div class="links">
+      <a href="#services">Services</a>
+      <a href="#charts">Insights</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Turning Data Into Profits</h1>
+    <p>We help restaurants & businesses uncover insights and drive growth.</p>
+    <button>Book a Consultation</button>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="service">
+      <h3>Custom Dashboards</h3>
+      <p>Track KPIs in real-time with modern, interactive dashboards.</p>
+    </div>
+    <div class="service">
+      <h3>Data Audits</h3>
+      <p>We clean, validate, and optimize your data for maximum accuracy.</p>
+    </div>
+    <div class="service">
+      <h3>Predictive Analytics</h3>
+      <p>Forecast demand, optimize pricing, and minimize waste.</p>
+    </div>
+  </section>
+
+  <!-- Charts -->
+  <section class="charts" id="charts">
+    <h2>Sample Insights</h2>
+    <canvas id="myChart" width="400" height="200"></canvas>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 AVG Analytics. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Item A', 'Item B', 'Item C', 'Item D'],
+        datasets: [{
+          label: 'Profit ($)',
+          data: [1200, 900, 1500, 700],
+          backgroundColor: 'rgba(0, 229, 255, 0.2)',
+          borderColor: '#0A1F44',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: { color: '#0A1F44' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: '#0A1F44' } },
+          y: { ticks: { color: '#0A1F44' } }
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
+
