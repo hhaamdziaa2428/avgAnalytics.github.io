@@ -33,9 +33,40 @@
       margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
+      position: relative;
     }
     nav a:hover {
       color: var(--accent);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: var(--secondary);
+      min-width: 250px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 1;
+      padding: 0.5rem 0;
+    }
+    .dropdown-content a {
+      color: var(--dark);
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      display: block;
+      font-weight: normal;
+    }
+    .dropdown-content a:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
 
     /* Hero Section */
@@ -69,6 +100,7 @@
       display: flex;
       justify-content: space-around;
       text-align: center;
+      flex-wrap: wrap;
     }
     .service {
       background: var(--secondary);
@@ -76,6 +108,8 @@
       padding: 2rem;
       border-radius: 10px;
       width: 30%;
+      min-width: 250px;
+      margin: 1rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .service h3 {
@@ -104,6 +138,38 @@
     <div class="logo"><a href="#">AVG Analytics</a></div>
     <div class="links">
       <a href="#services">Services</a>
+      <div class="dropdown">
+        <a href="#">Industries</a>
+        <div class="dropdown-content">
+          <div class="dropdown">
+            <a href="#">Restaurant Analytics</a>
+            <div class="dropdown-content">
+              <a href="#">Restaurant Analytics Solutions</a>
+              <a href="#">Waste Tracker</a>
+              <a href="#">Profitability Dashboard</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#">Game Analytics</a>
+            <div class="dropdown-content">
+              <a href="#">Game Analytics Solutions</a>
+              <a href="#">Game Health Analysis</a>
+              <a href="#">Player Retention Analysis</a>
+              <a href="#">Review Sentiment Analysis</a>
+              <a href="#">Level Drop-Off Funnel Analysis</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#">Real Estate Analytics</a>
+            <div class="dropdown-content">
+              <a href="#">Real Estate Analytics Solutions</a>
+              <a href="#">Rental ROI Calculator</a>
+              <a href="#">Agent Performance Dashboard</a>
+              <a href="#">Property Type Heatmap</a>
+            </div>
+          </div>
+        </div>
+      </div>
       <a href="#charts">Insights</a>
       <a href="#contact">Contact</a>
     </div>
@@ -112,7 +178,7 @@
   <!-- Hero -->
   <section class="hero">
     <h1>Turning Data Into Profits</h1>
-    <p>We help restaurants & businesses uncover insights and drive growth.</p>
+    <p>We help restaurants, gaming companies & real estate uncover insights and drive growth.</p>
     <button>Book a Consultation</button>
   </section>
 
@@ -120,15 +186,19 @@
   <section class="services" id="services">
     <div class="service">
       <h3>Custom Dashboards</h3>
-      <p>Track KPIs in real-time with modern, interactive dashboards.</p>
+      <p>Track KPIs in real-time with modern, interactive dashboards tailored to your industry.</p>
     </div>
     <div class="service">
-      <h3>Data Audits</h3>
-      <p>We clean, validate, and optimize your data for maximum accuracy.</p>
+      <h3>Data Audits & Cleaning</h3>
+      <p>We clean, validate, and optimize your business data for maximum reliability.</p>
     </div>
     <div class="service">
       <h3>Predictive Analytics</h3>
-      <p>Forecast demand, optimize pricing, and minimize waste.</p>
+      <p>Forecast demand, optimize pricing, and minimize inefficiencies with AI-driven insights.</p>
+    </div>
+    <div class="service">
+      <h3>Industry-Specific Solutions</h3>
+      <p>From restaurant profitability to player retention and real estate ROI, we build tailored solutions.</p>
     </div>
   </section>
 
@@ -176,4 +246,5 @@
 
 </body>
 </html>
+
 
